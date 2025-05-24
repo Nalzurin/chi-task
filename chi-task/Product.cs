@@ -16,6 +16,7 @@ namespace chi_task
             Name = name;
             Price = price;
         }
+        //Unused but could be useful in case we need to update our price(market changes, inflation)
         public void UpdatePrice(decimal newPrice)
         {
             Price = newPrice;

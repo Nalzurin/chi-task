@@ -10,38 +10,32 @@ namespace chi_task
     {
         private List<Product> _products;
 
+        //Constructors, one with list parameter in case we have a premade list from a different source
         public Cart()
         {
             _products = new();
         }
         public Cart(List<Product> products)
         {
-            _products = products;
+            _products = new(products);
         }
-        public Product GetProduct(int id)
-        {
-            return _products[id];
-        }
+
+        //Returns products
         public List<Product> GetProducts()
         {
             return _products;
         }
+        //Adds new item to the list
         public void AddProduct(Product product)
         {
             _products.Add(product);
         }
-        public void AddProduct(string name, decimal price)
-        {
-            _products.Add(new Product(name, price));
-        }
+        //Clears the list
         public void ClearProducts()
         {
             _products.Clear();
         }
-        public decimal GetPrice(int id)
-        {
-            return _products[id].Price;
-        }
+        //Gets the total amount of all items in the cart
         public decimal GetTotalAmount()
         {
             decimal result = 0;

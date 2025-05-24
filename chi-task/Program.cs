@@ -7,21 +7,28 @@
 
         static void Main(string[] args)
         {
+            //Intro for ~~pizzazz~~ 
             Console.WriteLine("Made by Alex K.");
             Thread.Sleep(1000);
+            //Exit flag for the loop
             bool exit = false;
+            // Initial main menu
             MainMenu();
+            //Main app loop
             while (!exit)
             {
+                //Reading input from the user
                 Console.Write("\nInput command: ");
                 string? input = Console.ReadLine();
                 Console.Write("\n");
                 int choice;
+                //Checking that input is indeed an int, pretty self-explanatory
                 if (!int.TryParse(input, out choice))
                 {
                     Console.WriteLine("Error: input must be an int value!");
                     continue;
                 }
+                //Selecting the appropriate command based on user input
                 switch (choice)
                 {
                     case 0:
@@ -57,6 +64,9 @@
 
         }
 
+        /// <summary>
+        /// Displays main menu with the available commands
+        /// </summary>
         static void MainMenu()
         {
             Console.Clear();
@@ -73,10 +83,14 @@
                                ");
         }
 
+        /// <summary>
+        /// Lists all available products
+        /// </summary>
         static void GetProducts()
         {
             Console.WriteLine("Listing products");
             Console.WriteLine("Available products:");
+            //Formatting for a table-like look (gotta keep it pretty)
             string formatting = "{0, -25} {1,6:c}";
             Console.WriteLine(format: formatting, "Name", "Price");
             foreach (Product product in products)
@@ -85,6 +99,9 @@
 
             }
         }
+        /// <summary>
+        /// Let's the user add a new product to the products tab
+        /// </summary>
         static void AddProduct()
         {
             Console.WriteLine("Adding new product");
@@ -115,6 +132,10 @@
             products.Add(newProduct);
             Console.WriteLine("New product created.");
         }
+
+        /// <summary>
+        /// Let's the user delete any product
+        /// </summary>
         static void DeleteProduct()
         {
             Console.WriteLine("Deleting product:");
@@ -141,6 +162,9 @@
             Console.WriteLine("Product removed.");
         }
 
+        /// <summary>
+        /// Lists all items that the user added to the cart
+        /// </summary>
         static void GetCartItems()
         {
             Console.WriteLine("Showing cart items");
@@ -157,7 +181,13 @@
             {
                 Console.WriteLine(format: formatting, item.Name, item.Price);
             }
+            decimal total = userCart.GetTotalAmount();
+            Console.WriteLine($"Total price: {total:c}");
         }
+
+        /// <summary>
+        /// Adds a product to the cart
+        /// </summary>
         static void AddCartItem()
         {
             Console.WriteLine("Adding cart item");
@@ -184,6 +214,9 @@
             Console.WriteLine($"Added {product.Name} to cart.");
         }
 
+        /// <summary>
+        /// Shows the checkout and lets the user input budget
+        /// </summary>
         static void Checkout()
         {
             Console.WriteLine("Checkout");
